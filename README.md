@@ -51,7 +51,7 @@ This project is a mutant detector, which is able to detect if a human is a mutan
 This project is deployed in ECS using AWS Fargate. The URL is: [http://magneto-detector-alb-2040400734.us-east-1.elb.amazonaws.com/docs](http://magneto-detector-alb-2040400734.us-east-1.elb.amazonaws.com/docs)
 
 ## Tests
-To run the tests, run `pytest` in the root directory
+To run the tests, run `pytest tests/` in the root directory
 
 ## Relevant considerations
 - The db is a simple json file, which is not the best option for a production environment. I would have used PostgreSQL and RDS but I spent my free-tier limit.
