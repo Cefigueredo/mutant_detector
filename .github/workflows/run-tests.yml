@@ -7,7 +7,6 @@
         types: [opened, edited, synchronize, reopened]
         branches:
           - main
-          - dev
         paths:
           - "app/**"
           - "tests/**"
@@ -16,7 +15,7 @@
       tests:
         runs-on: ubuntu-latest
         timeout-minutes: 10
-        environment: ${{ github.ref == 'refs/heads/main' }}
+        environment: ${{ github.ref == 'refs/heads/main' && 'prod'}}
         steps:
           - name: Checkout
             uses: actions/checkout@v4
@@ -24,13 +23,7 @@
           - name: Setup Python
             uses: actions/setup-python@v4
             with:
-              python-version: "3.11"
-
-          - name: Cache the virtualenv
-            uses: actions/cache@v2
-            with:
-              path: ./.venv
-              key: ${{ runner.os }}-venv-${{ hashFiles('**/poetry.lock') }}
+              python-version: "3.12"
     
           - name: Install dependencies
             run: |
