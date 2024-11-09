@@ -7,7 +7,6 @@
         types: [opened, edited, synchronize, reopened]
         branches:
           - main
-          - dev
         paths:
           - "app/**"
           - "tests/**"
@@ -16,7 +15,7 @@
       tests:
         runs-on: ubuntu-latest
         timeout-minutes: 10
-        environment: ${{ github.ref == 'refs/heads/main' }}
+        environment: ${{ github.ref == 'refs/heads/main' && 'prod'}}
         steps:
           - name: Checkout
             uses: actions/checkout@v4
