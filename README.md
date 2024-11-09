@@ -10,6 +10,9 @@
   - [Usage](#usage)
     - [Mutant Detection](#mutant-detection)
     - [Stats](#stats)
+    - [Using CURL](#using-curl)
+      - [Mutant Detection](#mutant-detection-1)
+      - [Stats](#stats-1)
   - [Cloud Testing](#cloud-testing)
   - [Tests](#tests)
   - [Relevant considerations](#relevant-considerations)
@@ -45,10 +48,39 @@ This project is a mutant detector, which is able to detect if a human is a mutan
 3. Click on the `Try it out` button
 4. Click on the `Execute` button
 
+### Using CURL
+
+You can also use curl to test the API. You just have to remove the `/docs` from the URL and add the endpoint you want to test.
+
+#### Mutant Detection
+```bash
+curl -X 'POST' \
+  'http://localhost:8000/mutant/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "dna": [
+    "ATGCGA",
+    "CAGTGC",
+    "TTATGT",
+    "AGAAGG",
+    "CCCCTA",
+    "TCACTG"
+  ]
+}'
+```
+
+#### Stats
+```bash
+curl -X 'GET' \
+  'http://localhost:8000/stats/' \
+  -H 'accept: application/json'
+```
+
 
 ## Cloud Testing
 
-This project is deployed in ECS using AWS Fargate. The URL is: [http://magneto-detector-alb-2040400734.us-east-1.elb.amazonaws.com/docs](http://magneto-detector-alb-2040400734.us-east-1.elb.amazonaws.com/docs)
+This project is deployed in ECS using AWS Fargate. The URL is: [http://mutant-alb-341917332.us-east-2.elb.amazonaws.com/docs](http://mutant-alb-341917332.us-east-2.elb.amazonaws.com/docs)
 
 ## Tests
 To run the tests, run `pytest tests/` in the root directory
