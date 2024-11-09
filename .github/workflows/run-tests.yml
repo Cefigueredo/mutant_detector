@@ -24,13 +24,7 @@
           - name: Setup Python
             uses: actions/setup-python@v4
             with:
-              python-version: "3.11"
-
-          - name: Cache the virtualenv
-            uses: actions/cache@v2
-            with:
-              path: ./.venv
-              key: ${{ runner.os }}-venv-${{ hashFiles('**/poetry.lock') }}
+              python-version: "3.12"
     
           - name: Install dependencies
             run: |
