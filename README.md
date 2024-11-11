@@ -16,7 +16,6 @@
       - [Stats](#stats-1)
   - [Cloud Testing](#cloud-testing)
   - [Tests](#tests)
-  - [Relevant considerations](#relevant-considerations)
 
 ## Description
 This project is a mutant detector, which is able to detect if a human is a mutant
@@ -93,6 +92,3 @@ This project is deployed in ECS using AWS Fargate. The URL is: [http://mutant-al
 
 ## Tests
 To run the tests, run `pytest tests/` in the root directory
-
-## Relevant considerations
-- The db is a simple json file, which is not the best option for a production environment. I would have used PostgreSQL and RDS but I spent my free-tier limit.
