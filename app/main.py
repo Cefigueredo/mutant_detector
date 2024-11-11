@@ -73,7 +73,7 @@ async def get_stats():
         dict: A dictionary containing the count of mutants and humans detected.
     """
     d = detector.Detector()
-    data = db.read_detections()
+    data = db.read_sequences()
     sequences = data.get("sequences", [])
     mutants = sum(1 for sequence in sequences if d.detect(sequence))
     humans = len(sequences) - mutants
@@ -93,5 +93,5 @@ async def read_db():
     Returns:
         dict: A dictionary containing the raw data from the database.
     """
-    data = db.read_detections()
+    data = db.read_sequences()
     return data
