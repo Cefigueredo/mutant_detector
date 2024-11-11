@@ -1,22 +1,20 @@
 import json
 import os
 
-from fastapi.testclient import TestClient
+import requests
 
-from app import main
-
-client = TestClient(main.app)
+BASE_URL = "http://localhost:8000"
 
 
 def test_read_root():
-    response = client.get("/")
+    response = requests.get(f"{BASE_URL}/")
     assert response.status_code == 200
     assert response.json() == {"Hello": "World"}
 
 
 def test_is_mutant_valid_mutant_dna():
-    response = client.post(
-        "/mutant/",
+    response = requests.post(
+        f"{BASE_URL}/mutant/",
         json={
             "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
         },
@@ -26,8 +24,8 @@ def test_is_mutant_valid_mutant_dna():
 
 
 def test_is_mutant_valid_human_dna():
-    response = client.post(
-        "/mutant/",
+    response = requests.post(
+        f"{BASE_URL}/mutant/",
         json={
             "dna": ["ATGCCA", "CTGTGC", "TTATGT", "AGAAGG", "CACCTA", "TCACTG"]
         },
@@ -37,8 +35,8 @@ def test_is_mutant_valid_human_dna():
 
 
 def test_is_mutant_invalid_length():
-    response = client.post(
-        "/mutant/",
+    response = requests.post(
+        f"{BASE_URL}/mutant/",
         json={"dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA"]},
     )
     assert response.status_code == 400
@@ -49,8 +47,8 @@ def test_is_mutant_invalid_length():
 
 
 def test_is_mutant_invalid_characters():
-    response = client.post(
-        "/mutant/",
+    response = requests.post(
+        f"{BASE_URL}/mutant/",
         json={
             "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTZ"]
         },
@@ -63,7 +61,7 @@ def test_is_mutant_invalid_characters():
 
 
 def test_get_stats():
-    response = client.get("/stats/")
+    response = requests.get(f"{BASE_URL}/stats/")
     assert response.status_code == 200
     data = response.json()
     assert "count_mutant_dna" in data
@@ -72,7 +70,7 @@ def test_get_stats():
 
 
 def test_read_db():
-    response = client.get("/db/")
+    response = requests.get(f"{BASE_URL}/db/")
     assert response.status_code == 200
     data = response.json()
     assert "sequences" in data
