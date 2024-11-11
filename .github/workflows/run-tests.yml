@@ -29,6 +29,11 @@
             run: |
                 pip install -r requirements.txt
 
+          - name: Start App
+            run: |
+              docker-compose up -d
+              sleep 10
+
           - name: Run tests
             run: |
               python -m pytest tests
