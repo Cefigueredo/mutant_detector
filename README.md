@@ -7,6 +7,7 @@
   - [Description](#description)
   - [Technologies](#technologies)
   - [Installation](#installation)
+    - [Using Docker](#using-docker)
   - [Usage](#usage)
     - [Mutant Detection](#mutant-detection)
     - [Stats](#stats)
@@ -24,6 +25,7 @@ This project is a mutant detector, which is able to detect if a human is a mutan
 - Python
 - FastAPI
 - Docker
+- Docker Compose
 - Terraform
 
 ## Installation
@@ -31,7 +33,14 @@ This project is a mutant detector, which is able to detect if a human is a mutan
 2. Create a virtual environment with `python -m venv venv`
 3. Activate the virtual environment with `source venv/bin/activate`
 4. Install the dependencies with `pip install -r requirements.txt`
-5. Run `fastapi run app/main.py --port 8000` to start the server
+5. Create the `.env` file with the following variables:
+    ```bash
+    DB_SOURCE="json"
+    ```
+6. Run `fastapi run app/main.py --port 8000` to start the server
+
+### Using Docker
+1. Run `docker-compose up` to start the server
 
 ## Usage
 
